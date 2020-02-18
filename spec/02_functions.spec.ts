@@ -120,4 +120,38 @@ describe('writing functions', () => {
 
 
     });
+    describe('array methods', () => {
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        it('looks at each one of them', () => {
+            numbers.forEach(n => console.log('Got ', n));
+
+        });
+        describe('that returns new arrays', () => {
+            it('filter', () => {
+
+                const evens = numbers.filter(n => n % 2 === 0);
+                expect(evens).toEqual([2, 4, 6, 8]);
+            });
+            it('map', () => {
+                const result = numbers.map(n => n * 2);
+                expect(result).toEqual([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+
+            });
+
+        });
+        describe('some methods that return a single (scalar) value', () => {
+            it('checking the membership', () => {
+                expect(numbers.some(n => n % 2 === 0)).toBe(true);
+                expect(numbers.every(n => n % 2 === 0)).toBe(false);
+            });
+
+            it('reduce', () => {
+                expect(numbers.reduce((s, n) => s + n)).toBe(45);
+                expect(numbers.reduce((s, n) => s + n, 100)).toBe(145);
+
+            });
+
+        });
+    });
+
 });
